@@ -4,15 +4,25 @@ import Link from 'next/link';
 import React, { useContext } from 'react';
 import { Store } from '../utils/Store';
 import { XCircleIcon } from '@heroicons/react/24/outline';
+import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
 
 const CartScreen = () => {
   const { state, dispatch } = useContext(Store);
+  const router = useRouter();
   const {
     cart: { cartItems }
   } = state;
+  const subtotal = cartItems.reduce((a, c) => a + c.quantity, 0);
+  const quantity = cartItems.reduce((a, c) => a + c.quantity * c.price, 0);
 
   const removeItemHandler = (item) => {
     dispatch({ type: 'CART_REMOVE_ITEM', payload: item });
+  };
+
+  const updateCartHandler = (item, qty) => {
+    const quantity = Number(qty);
+    dispatch({ type: 'CART_ADD_ITEM', payload: { ...item, quantity } });
   };
 
   return (
@@ -52,7 +62,21 @@ const CartScreen = () => {
                         </a>
                       </Link>
                     </td>
-                    <td className="p-5 text-right">{item.quantity}</td>
+                    <td className="p-5 text-right">
+                      <select
+                        value={item.quantity}
+                        onChange={(e) =>
+                          updateCartHandler(item, e.target.value)
+                        }>
+                        {[...Array(item.countInStock).keys()].map((num) => (
+                          <option
+                            key={num + 1}
+                            value={num + 1}>
+                            {num + 1}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
                     <td className="p-5 text-right">${item.price}</td>
                     <td className="p-5 text-center">
                       <button onClick={() => removeItemHandler(item)}>
@@ -68,12 +92,15 @@ const CartScreen = () => {
             <ul>
               <li>
                 <div className="pb-3 text-xl">
-                  Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}) : ${' '}
-                  {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
+                  Subtotal ( {subtotal} ): ${quantity}
                 </div>
               </li>
               <li>
-                <button className="primary-button w-full">Check Out</button>
+                <button
+                  onClick={() => router.push('/shipping')}
+                  className="primary-button w-full">
+                  Check Out
+                </button>
               </li>
             </ul>
           </div>
@@ -83,4 +110,4 @@ const CartScreen = () => {
   );
 };
 
-export default CartScreen;
+export default dynamic(() => Promise.resolve(CartScreen), {ssr: false});
