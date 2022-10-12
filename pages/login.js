@@ -1,7 +1,7 @@
+import Layout from '../components/Layout';
 import Link from 'next/link';
 import React from 'react'
 import { useForm } from 'react-hook-form';
-import Layout from '../components/Layout';
 
 const LoginScreen = () => {
   const { handleSubmit, register, formState: { errors } } = useForm()
@@ -15,7 +15,7 @@ const LoginScreen = () => {
       <form className='mx-auto max-w-screen-md' onSubmit={handleSubmit(submitHandler)}>
         <h1 className='mb-4 text-xl'>Login</h1>
         <div className='mb-4'>
-          <label for="email">Email</label>
+          <label htmlFor="email">Email</label>
           <input type="email" {...register('email', {
             required: 'Please enter email', pattern: {
               value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/i,
@@ -31,7 +31,7 @@ const LoginScreen = () => {
           }
         </div>
         <div className='mb-4'>
-          <label for="password">Password</label>
+          <label htmlFor="password">Password</label>
           <input {
             ...register('password', {
               required: 'Please enter password',
