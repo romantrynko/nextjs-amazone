@@ -46,7 +46,7 @@ function Layout({ title, children }) {
       </Head>
 
       <ToastContainer
-        position="bottom-center"
+        position="top-right"
         limit={3}
       />
 
