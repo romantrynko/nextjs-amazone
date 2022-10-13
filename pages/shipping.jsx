@@ -1,19 +1,29 @@
 import CheckoutWizard from '../components/CheckoutWizard';
+import Cookies from 'js-cookie';
 import Layout from '../components/Layout';
-import React, { useContext } from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useContext, useEffect } from 'react';
 import { Store } from '../utils/Store';
+import { useForm } from 'react-hook-form';
 
 const ShippingScreen = () => {
   const {
+    formState: { errors },
     handleSubmit,
     register,
-    formState: { errors },
-    setValue,
-    getValues
+    setValue
   } = useForm();
 
   const { state, dispatch } = useContext(Store);
+  const { cart } = state;
+  const { shippingAddress } = cart;
+
+  useEffect(() => {
+    setValue('address', shippingAddress.address);
+    setValue('city', shippingAddress.city);
+    setValue('country', shippingAddress.country);
+    setValue('fullName', shippingAddress.fullName);
+    setValue('postalCode', shippingAddress.postalCode);
+  }, [setValue, shippingAddress]);
 
   const submitHandler = ({ fullName, address, city, postalCode, country }) => {
     dispatch({
@@ -23,10 +33,22 @@ const ShippingScreen = () => {
         address,
         city,
         postalCode,
-        country,
-        location
+        country
       }
     });
+    Cookies.set(
+      'cart',
+      JSON.stringify({
+        ...cart,
+        shippingAddress: {
+          fullName,
+          address,
+          city,
+          postalCode,
+          country
+        }
+      })
+    );
   };
 
   return (
@@ -131,5 +153,7 @@ const ShippingScreen = () => {
     </Layout>
   );
 };
+
+ShippingScreen.auth = true;
 
 export default ShippingScreen;
