@@ -4,6 +4,7 @@ import Layout from '../components/Layout';
 import React, { useContext, useEffect } from 'react';
 import { Store } from '../utils/Store';
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/router';
 
 const ShippingScreen = () => {
   const {
@@ -13,6 +14,7 @@ const ShippingScreen = () => {
     setValue
   } = useForm();
 
+  const router = useRouter();
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
   const { shippingAddress } = cart;
@@ -49,6 +51,8 @@ const ShippingScreen = () => {
         }
       })
     );
+
+    router.push('/payment');
   };
 
   return (

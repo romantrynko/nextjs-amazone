@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
         ) : (
           <Component {...pageProps} />
         )}
-        
+
       </StoreProvider>
     </SessionProvider>
   );
@@ -25,7 +25,7 @@ function Auth({ children }) {
   const { status } = useSession({
     required: true,
     onUnauthenticated() {
-      router.push('/unauthorized?message=login required');
+      router.push('/unauthorized?message=Login required');
     }
   });
   if (status === 'loading') {
