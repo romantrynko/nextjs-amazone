@@ -1,17 +1,19 @@
 import 'react-toastify/dist/ReactToastify.css';
+import Cookies from 'js-cookie';
+import DropdownLink from './DropdownLink';
 import Head from 'next/head';
 import Link from 'next/link';
 import React, { useContext, useState, useEffect } from 'react';
+import { Menu } from '@headlessui/react';
 import { Store } from '../utils/Store';
 import { ToastContainer } from 'react-toastify';
+import { signOut } from 'next-auth/react';
 import { useSession } from 'next-auth/react';
-import DropdownLink from './DropdownLink';
-import { Menu } from '@headlessui/react';
 
 function Layout({ title, children }) {
   const { status, data: session } = useSession();
 
-  const { state } = useContext(Store);
+  const { state, dispatch } = useContext(Store);
   const { cart } = state;
   const [cartItemsCount, setCartItemsCount] = useState(0);
 
@@ -24,8 +26,10 @@ function Layout({ title, children }) {
   }, [cart.cartItems]);
 
   const logoutClickHandler = () => {
-    
-  }
+    Cookies.remove('cart');
+    dispatch({ type: 'CART_RESET' });
+    signOut({ callbackUrl: '/login' });
+  };
 
   return (
     <>
