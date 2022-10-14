@@ -28,6 +28,8 @@ const PaymentScreen = () => {
         paymentMethod: selectedPaymentMethod
       })
     );
+
+    router.push('/placeorder');
   };
 
   useEffect(() => {
