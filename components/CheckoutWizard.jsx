@@ -7,10 +7,10 @@ const CheckoutWizard = ({ activeStep = 0 }) => {
         (step, index) => (
           <div
             key={index}
-            className={`flex-1 border-b-2 text-center ${
+            className={`flex-1 hover:cursor-pointer border-b-2 text-center pb-2 mx-1 mb-5 mt-2 ${
               index <= activeStep
-                ? 'border-indigo-500 text-indigo-500'
-                : 'border-gray-400 text-gray-400'
+                ? 'border-indigo-600 text-indigo-600'
+                : 'border-gray-300 text-gray-300'
             }`}>
             {step}
           </div>
