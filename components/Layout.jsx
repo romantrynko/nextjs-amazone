@@ -45,10 +45,7 @@ function Layout({ title, children }) {
         />
       </Head>
 
-      <ToastContainer
-        position="top-center"
-        
-      />
+      <ToastContainer position="top-center" />
 
       <div className="flex min-h-screen flex-col justify-between">
         <header>

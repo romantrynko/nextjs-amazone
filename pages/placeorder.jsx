@@ -1,25 +1,66 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import React, { useContext } from 'react';
 import CheckoutWizard from '../components/CheckoutWizard';
+import Cookies from 'js-cookie';
+import Image from 'next/image';
 import Layout from '../components/Layout';
-import { Store } from '../utils/Store';
+import Link from 'next/link';
+import React, { useContext, useEffect, useState } from 'react';
+import axios from 'axios';
 import usePrice from '../utils/usePrice';
+import { Store } from '../utils/Store';
+import { getError } from '../utils/error';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 
 const PlaceOrderScreen = () => {
   const { state, dispatch } = useContext(Store);
-  const loading = false;
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const {
     cart: { cartItems, shippingAddress, paymentMethod }
   } = state;
-  
+  const { cart } = state;
+
   const { itemsPrice, shippingPrice, taxPrice, totalPrice } =
     usePrice(cartItems);
-  
-  const placeOrderHandler = () => {
 
-  }
+  useEffect(() => {
+    if (!paymentMethod) {
+      router.push('/payment');
+    }
+  }, [paymentMethod, router]);
+
+  const placeOrderHandler = () => {
+    try {
+      setLoading(true);
+
+      const { data } = axios.post('/api/orders', {
+        orderItems: cartItems,
+        shippingAddress,
+        paymentMethod,
+        itemsPrice,
+        shippingPrice,
+        taxPrice,
+        totalPrice
+      });
+
+      setLoading(false);
+
+      dispatch({ type: 'CART_CLEAR_ITEMS' });
+
+      Cookies.set(
+        'cart',
+        JSON.stringify({
+          ...cart,
+          cartItems: []
+        })
+      );
+      router.push(`/order/${data._id}`)
+    } catch (error) {
+      setLoading(false);
+      toast.error(getError(error));
+    }
+  };
 
   return (
     <Layout title="Place Order">
