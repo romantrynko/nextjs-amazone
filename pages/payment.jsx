@@ -79,6 +79,6 @@ const PaymentScreen = () => {
   );
 };
 
-PaymentScreen.auth = true;
+PaymentScreen.auth = true; 
 
 export default PaymentScreen;
