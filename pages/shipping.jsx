@@ -67,7 +67,7 @@ const ShippingScreen = () => {
           <input
             className="w-full"
             id="fullName"
-            autofocus
+            autoFocus
             {...register('fullName', {
               required: 'Please enter full name'
             })}
@@ -83,7 +83,7 @@ const ShippingScreen = () => {
           <input
             className="w-full"
             id="address"
-            autofocus
+            autoFocus
             {...register('address', {
               required: 'Please enter address',
               minLength: {
@@ -103,7 +103,7 @@ const ShippingScreen = () => {
           <input
             className="w-full"
             id="city"
-            autofocus
+            autoFocus
             {...register('city', {
               required: 'Please enter city'
             })}
@@ -119,7 +119,7 @@ const ShippingScreen = () => {
           <input
             className="w-full"
             id="postalCode"
-            autofocus
+            autoFocus
             {...register('postalCode', {
               required: 'Please enter postal code'
             })}
@@ -135,7 +135,7 @@ const ShippingScreen = () => {
           <input
             className="w-full"
             id="country"
-            autofocus
+            autoFocus
             {...register('country', {
               required: 'Please enter country',
               minLength: {

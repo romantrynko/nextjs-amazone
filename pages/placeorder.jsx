@@ -32,32 +32,31 @@ const PlaceOrderScreen = () => {
 
   const placeOrderHandler = async () => {
     try {
-    setLoading(true);
+      setLoading(true);
 
-    const { data } = await axios.post('/api/orders', {
-      orderItems: cartItems,
-      shippingAddress,
-      paymentMethod,
-      itemsPrice,
-      shippingPrice,
-      taxPrice,
-      totalPrice
-    });
+      const { data } = await axios.post('/api/orders', {
+        orderItems: cartItems,
+        shippingAddress,
+        paymentMethod,
+        itemsPrice,
+        shippingPrice,
+        taxPrice,
+        totalPrice
+      });
 
-    setLoading(false);
+      setLoading(false);
 
-    dispatch({ type: 'CART_CLEAR_ITEMS' });
+      dispatch({ type: 'CART_CLEAR_ITEMS' });
 
-    Cookies.set(
-      'cart',
-      JSON.stringify({
-        ...cart,
-        cartItems: []
-      })
-    );
+      Cookies.set(
+        'cart',
+        JSON.stringify({
+          ...cart,
+          cartItems: []
+        })
+      );
 
-    router.push(`/order/${data._id}`)
-
+      router.push(`/order/${data._id}`);
     } catch (error) {
       setLoading(false);
       toast.error(getError(error));
