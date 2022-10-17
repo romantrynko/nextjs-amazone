@@ -6,16 +6,19 @@ import { getError } from '../utils/error';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
+import axios from 'axios';
 
 const RegisterScreen = () => {
   const {
     handleSubmit,
     register,
+    getValues,
     formState: { errors }
   } = useForm();
-  const { data: session } = useSession();
-  const router = useRouter();
 
+  const { data: session } = useSession();
+
+  const router = useRouter();
   const { redirect } = router.query;
 
   useEffect(() => {
@@ -24,8 +27,14 @@ const RegisterScreen = () => {
     }
   }, [redirect, router, session]);
 
-  const submitHandler = async ({ email, password }) => {
+  const submitHandler = async ({ name, email, password }) => {
     try {
+      await axios.post('/api/auth/signup', {
+        name,
+        email,
+        password
+      });
+
       const result = await signIn('credentials', {
         redirect: 'false',
         email,
@@ -40,11 +49,11 @@ const RegisterScreen = () => {
   };
 
   return (
-    <Layout title="login">
+    <Layout title="Create Account">
       <form
         className="mx-auto max-w-screen-md"
         onSubmit={handleSubmit(submitHandler)}>
-        <h1 className="mb-4 text-xl">Login</h1>
+        <h1 className="mb-4 text-xl">Create Account</h1>
 
         <div className="mb-4">
           <label htmlFor="email">Name</label>
@@ -98,13 +107,14 @@ const RegisterScreen = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="confirmPassword">confirmPassword</label>
+          <label htmlFor="confirmPassword">Confirm Password</label>
           <input
             {...register('confirmPassword', {
               required: 'Please confirm password',
+              validate: (value) => value === getValues('password'),
               minLength: {
                 value: 3,
-                message: 'cassword is less than 3 characters'
+                message: 'confirm password is less than 3 characters'
               }
             })}
             type="confirmPassword"
@@ -128,7 +138,7 @@ const RegisterScreen = () => {
 
         <div className="mb-4">
           Don&apos;t have an account? &nbsp;
-          <Link href="register">Register</Link>
+          <Link href={`/register?redirect=${redirect || '/'}`}>Register</Link>
         </div>
       </form>
     </Layout>
