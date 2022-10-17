@@ -1,25 +1,25 @@
-import CheckoutWizard from '../components/CheckoutWizard';
-import Cookies from 'js-cookie';
-import Image from 'next/image';
-import Layout from '../components/Layout';
-import Link from 'next/link';
-import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-import usePrice from '../utils/usePrice';
-import { Store } from '../utils/Store';
-import { getError } from '../utils/error';
-import { toast } from 'react-toastify';
+import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
+import React, { useContext, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import CheckoutWizard from '../components/CheckoutWizard';
+import Layout from '../components/Layout';
+import { getError } from '../utils/error';
+import { Store } from '../utils/Store';
+import usePrice from '../utils/usePrice';
 
 const PlaceOrderScreen = () => {
   const { state, dispatch } = useContext(Store);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
+  const { cart } = state;
   const {
     cart: { cartItems, shippingAddress, paymentMethod }
   } = state;
-  const { cart } = state;
 
   const { itemsPrice, shippingPrice, taxPrice, totalPrice } =
     usePrice(cartItems);
@@ -30,32 +30,34 @@ const PlaceOrderScreen = () => {
     }
   }, [paymentMethod, router]);
 
-  const placeOrderHandler = () => {
+  const placeOrderHandler = async () => {
     try {
-      setLoading(true);
+    setLoading(true);
 
-      const { data } = axios.post('/api/orders', {
-        orderItems: cartItems,
-        shippingAddress,
-        paymentMethod,
-        itemsPrice,
-        shippingPrice,
-        taxPrice,
-        totalPrice
-      });
+    const { data } = await axios.post('/api/orders', {
+      orderItems: cartItems,
+      shippingAddress,
+      paymentMethod,
+      itemsPrice,
+      shippingPrice,
+      taxPrice,
+      totalPrice
+    });
 
-      setLoading(false);
+    setLoading(false);
 
-      dispatch({ type: 'CART_CLEAR_ITEMS' });
+    dispatch({ type: 'CART_CLEAR_ITEMS' });
 
-      Cookies.set(
-        'cart',
-        JSON.stringify({
-          ...cart,
-          cartItems: []
-        })
-      );
-      router.push(`/order/${data._id}`)
+    Cookies.set(
+      'cart',
+      JSON.stringify({
+        ...cart,
+        cartItems: []
+      })
+    );
+
+    router.push(`/order/${data._id}`)
+
     } catch (error) {
       setLoading(false);
       toast.error(getError(error));
