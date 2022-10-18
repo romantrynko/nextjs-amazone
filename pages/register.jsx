@@ -1,52 +1,11 @@
 import Layout from '../components/Layout';
 import Link from 'next/link';
-import React, { useEffect } from 'react';
-import { signIn, useSession } from 'next-auth/react';
-import { getError } from '../utils/error';
-import { toast } from 'react-toastify';
-import { useForm } from 'react-hook-form';
-import { useRouter } from 'next/router';
-import axios from 'axios';
+import React from 'react';
+import useRegisterPage from '../hooks/useRegisterPage';
 
 const RegisterScreen = () => {
-  const {
-    handleSubmit,
-    register,
-    getValues,
-    formState: { errors }
-  } = useForm();
-
-  const { data: session } = useSession();
-
-  const router = useRouter();
-  const { redirect } = router.query;
-
-  useEffect(() => {
-    if (session?.user) {
-      router.push(redirect || '/');
-    }
-  }, [redirect, router, session]);
-
-  const submitHandler = async ({ name, email, password }) => {
-    try {
-      await axios.post('/api/auth/signup', {
-        name,
-        email,
-        password
-      });
-
-      const result = await signIn('credentials', {
-        redirect: 'false',
-        email,
-        password
-      });
-      if (result.error) {
-        toast.error(result.error);
-      }
-    } catch (err) {
-      toast.error(getError.error);
-    }
-  };
+  const { handleSubmit, submitHandler, register, errors, getValues, redirect } =
+    useRegisterPage();
 
   return (
     <Layout title="Create Account">
