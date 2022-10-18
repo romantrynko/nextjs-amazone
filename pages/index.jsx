@@ -1,29 +1,11 @@
 import Layout from '../components/Layout';
 import Product from '../models/Product';
 import ProductItem from '../components/ProductItem';
-import axios from 'axios';
 import db from '../utils/db';
-import { Store } from '../utils/Store';
-import { toast } from 'react-toastify';
-import { useContext } from 'react';
+import useHomePage from '../hooks/useHomePage';
 
 export default function Home({ products }) {
-  const { state, dispatch } = useContext(Store);
-  const { cart } = state;
-
-  const addToCartHandler = async (product) => {
-    const existItem = cart.cartItems.find((x) => x.slug === product.slug);
-    const quantity = existItem ? existItem.quantity + 1 : 1;
-    const { data } = await axios.get(`/api/products/${product._id}`);
-
-    if (data.countInStock < quantity) {
-      return toast.error('Sorry. Product is out of stock');
-    }
-
-    dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
-
-    toast.success('Product added to the cart');
-  };
+  const { addToCartHandler } = useHomePage();
 
   return (
     <Layout title={'Home Page'}>
