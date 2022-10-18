@@ -6,39 +6,43 @@ import { signIn, useSession } from 'next-auth/react';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
+import useLoginPage from '../hooks/useLoginPage';
 
 const LoginScreen = () => {
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
 
-  const router = useRouter();
-  const { redirect } = router.query;
+  // const router = useRouter();
+  // const { redirect } = router.query;
 
-  useEffect(() => {
-    if (session?.user) {
-      router.push(redirect || '/');
-    }
-  }, [redirect, router, session]);
-  
-  const {
-    handleSubmit,
-    register,
-    formState: { errors }
-  } = useForm();
+  // useEffect(() => {
+  //   if (session?.user) {
+  //     router.push(redirect || '/');
+  //   }
+  // }, [redirect, router, session]);
 
-  const submitHandler = async ({ email, password }) => {
-    try {
-      const result = await signIn('credentials', {
-        redirect: false,
-        email,
-        password
-      });
-      if (result.error) {
-        toast.error(result.error);
-      }
-    } catch (err) {
-      toast.error(getError(err));
-    }
-  };
+  // const {
+  //   handleSubmit,
+  //   register,
+  //   formState: { errors }
+  // } = useForm();
+
+  // const submitHandler = async ({ email, password }) => {
+  //   try {
+  //     const result = await signIn('credentials', {
+  //       redirect: false,
+  //       email,
+  //       password
+  //     });
+  //     if (result.error) {
+  //       toast.error(result.error);
+  //     }
+  //   } catch (err) {
+  //     toast.error(getError(err));
+  //   }
+  // };
+
+  const { handleSubmit, register, submitHandler, errors, redirect } =
+    useLoginPage();
 
   return (
     <Layout title="login">
