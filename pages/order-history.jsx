@@ -39,7 +39,7 @@ const OrderHistoryScreen = () => {
 
   return (
     <Layout title="Order History">
-      <h1>Order History</h1>
+      <h1 className='text-xl'>Order History</h1>
       {loading ? (
         <div>Loading...</div>
       ) : error ? (
@@ -64,10 +64,10 @@ const OrderHistoryScreen = () => {
                   key={order._id}
                   className="border-b">
                   <td className="p-5">{order._id.substring(20, 24)}</td>
+                  <td className="p-5">${order.totalPrice}</td>
                   <td className="p-5">{order.createdAt.substring(0, 10)}</td>
-                  <td className="p-5">{order.totalPrice}</td>
                   <td className="p-5">
-                    {order.isPAid
+                    {order.isPaid
                       ? `${order.paidAt.substring(0, 10)}`
                       : 'not paid'}
                   </td>
