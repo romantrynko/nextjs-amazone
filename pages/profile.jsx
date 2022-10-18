@@ -10,8 +10,7 @@ export default function ProfileScreen() {
     <Layout title="Profile">
       <form
         className="mx-auto max-w-screen-md"
-        onSubmit={handleSubmit(submitHandler)}
-      >
+        onSubmit={handleSubmit(submitHandler)}>
         <h1 className="mb-4 text-xl">Update Profile</h1>
 
         <div className="mb-4">
@@ -22,7 +21,7 @@ export default function ProfileScreen() {
             id="name"
             autoFocus
             {...register('name', {
-              required: 'Please enter name',
+              required: 'Please enter name'
             })}
           />
           {errors.name && (
@@ -40,8 +39,8 @@ export default function ProfileScreen() {
               required: 'Please enter email',
               pattern: {
                 value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/i,
-                message: 'Please enter valid email',
-              },
+                message: 'Please enter valid email'
+              }
             })}
           />
           {errors.email && (
@@ -56,7 +55,7 @@ export default function ProfileScreen() {
             type="password"
             id="password"
             {...register('password', {
-              minLength: { value: 6, message: 'password is more than 5 chars' },
+              minLength: { value: 6, message: 'password is more than 5 chars' }
             })}
           />
           {errors.password && (
@@ -74,8 +73,8 @@ export default function ProfileScreen() {
               validate: (value) => value === getValues('password'),
               minLength: {
                 value: 6,
-                message: 'confirm password is more than 5 chars',
-              },
+                message: 'confirm password is more than 5 chars'
+              }
             })}
           />
           {errors.confirmPassword && (

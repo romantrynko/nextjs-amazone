@@ -1,60 +1,11 @@
 import CheckoutWizard from '../components/CheckoutWizard';
-import Cookies from 'js-cookie';
 import Layout from '../components/Layout';
-import React, { useContext, useEffect } from 'react';
-import { Store } from '../utils/Store';
-import { useForm } from 'react-hook-form';
-import { useRouter } from 'next/router';
+import React from 'react';
+import useShippingPage from '../hooks/useShippingPage';
 
 const ShippingScreen = () => {
-  const {
-    formState: { errors },
-    handleSubmit,
-    register,
-    setValue
-  } = useForm();
-
-  const router = useRouter();
-  const { state, dispatch } = useContext(Store);
-  const { cart } = state;
-  const { shippingAddress } = cart;
-
-  useEffect(() => {
-    setValue('address', shippingAddress.address);
-    setValue('city', shippingAddress.city);
-    setValue('country', shippingAddress.country);
-    setValue('fullName', shippingAddress.fullName);
-    setValue('postalCode', shippingAddress.postalCode);
-  }, [setValue, shippingAddress]);
-
-  const submitHandler = ({ fullName, address, city, postalCode, country }) => {
-    dispatch({
-      type: 'SAVE_SHIPPING_ADDRESS',
-      payload: {
-        fullName,
-        address,
-        city,
-        postalCode,
-        country
-      }
-    });
-    Cookies.set(
-      'cart',
-      JSON.stringify({
-        ...cart,
-        shippingAddress: {
-          fullName,
-          address,
-          city,
-          postalCode,
-          country
-        }
-      })
-    );
-
-    router.push('/payment');
-  };
-
+  const { handleSubmit, submitHandler, register, errors } = useShippingPage();
+  
   return (
     <Layout title="Shipping Address">
       <CheckoutWizard activeStep={1} />
@@ -83,7 +34,6 @@ const ShippingScreen = () => {
           <input
             className="w-full"
             id="address"
-            autoFocus
             {...register('address', {
               required: 'Please enter address',
               minLength: {
@@ -103,7 +53,6 @@ const ShippingScreen = () => {
           <input
             className="w-full"
             id="city"
-            autoFocus
             {...register('city', {
               required: 'Please enter city'
             })}
@@ -119,7 +68,6 @@ const ShippingScreen = () => {
           <input
             className="w-full"
             id="postalCode"
-            autoFocus
             {...register('postalCode', {
               required: 'Please enter postal code'
             })}
@@ -135,7 +83,6 @@ const ShippingScreen = () => {
           <input
             className="w-full"
             id="country"
-            autoFocus
             {...register('country', {
               required: 'Please enter country',
               minLength: {
