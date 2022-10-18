@@ -1,39 +1,44 @@
 import Layout from '../components/Layout';
 import Link from 'next/link';
-import React, { useEffect } from 'react'
-import { signIn, useSession } from 'next-auth/react';
+import React, { useEffect } from 'react';
 import { getError } from '../utils/error';
+import { signIn, useSession } from 'next-auth/react';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 
 const LoginScreen = () => {
-  const { handleSubmit, register, formState: { errors } } = useForm();
   const { data: session } = useSession();
-  const router = useRouter();
 
+  const router = useRouter();
   const { redirect } = router.query;
 
   useEffect(() => {
     if (session?.user) {
-      router.push(redirect || '/')
+      router.push(redirect || '/');
     }
-  }, [redirect, router, session])
+  }, [redirect, router, session]);
+  
+  const {
+    handleSubmit,
+    register,
+    formState: { errors }
+  } = useForm();
 
   const submitHandler = async ({ email, password }) => {
     try {
       const result = await signIn('credentials', {
-        redirect: 'false',
+        redirect: false,
         email,
         password
-      })
+      });
       if (result.error) {
-        toast.error(result.error)
+        toast.error(result.error);
       }
     } catch (err) {
-      toast.error(getError.error)
+      toast.error(getError(err));
     }
-  }
+  };
 
   return (
     <Layout title="login">
@@ -87,6 +92,6 @@ const LoginScreen = () => {
       </form>
     </Layout>
   );
-}
+};
 
-export default LoginScreen
+export default LoginScreen;

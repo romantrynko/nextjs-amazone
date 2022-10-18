@@ -3,27 +3,25 @@ import Layout from '../../components/Layout';
 import Link from 'next/link';
 import axios from 'axios';
 import { getError } from '../../utils/error';
-import { useEffect, useReducer } from 'react';
-import { useRouter } from 'next/router';
-import usePayment from '../../hooks/usePayment';
-import { toast } from 'react-toastify';
-import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
+import { useEffect } from 'react';
+import useOrderPage from '../../hooks/useOrderPage';
+import { PayPalButtons } from '@paypal/react-paypal-js';
 
 function OrderScreen() {
-  const { reducer } = usePayment();
-
-  const { query } = useRouter();
-  const orderId = query.id;
-  const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
-
-  const [
-    { loading, error, order, successPay, loadingPay, errorPay },
-    dispatch
-  ] = useReducer(reducer, {
-    loading: true,
-    order: {},
-    error: ''
-  });
+  const {
+    dispatch,
+    orderId,
+    order,
+    successPay,
+    paypalDispatch,
+    loading,
+    error,
+    isPending,
+    loadingPay,
+    createOrder,
+    onApprove,
+    onError
+  } = useOrderPage();
 
   useEffect(() => {
     const fetchOrder = async () => {
@@ -60,7 +58,7 @@ function OrderScreen() {
       };
       loadPayPalScript();
     }
-  }, [order, orderId, paypalDispatch, successPay]);
+  }, [dispatch, order, orderId, paypalDispatch, successPay]);
 
   const {
     shippingAddress,
@@ -75,41 +73,6 @@ function OrderScreen() {
     isDelivered,
     deliveredAt
   } = order;
-
-  function createOrder(data, actions) {
-    return actions.order
-      .create({
-        purchase_units: [
-          {
-            amount: { value: totalPrice }
-          }
-        ]
-      })
-      .then((orderId) => {
-        return orderId;
-      });
-  }
-
-  function onApprove(data, actions) {
-    return actions.order.capture().then(async (details) => {
-      try {
-        dispatch({ type: 'PAY_REQUEST' });
-        const { data } = await axios.put(
-          `/api/orders/${order._id}/pay`,
-          details
-        );
-        dispatch({ type: 'PAY_SUCCESS', payload: data });
-        toast.success('Order is paid successfully');
-      } catch (err) {
-        dispatch({ type: 'PAY_FAIL', payload: getError(err) });
-        toast.error(getError(err));
-      }
-    });
-  }
-
-  function onError(err) {
-    toast.error(getError(err));
-  }
 
   return (
     <Layout title="Your order">

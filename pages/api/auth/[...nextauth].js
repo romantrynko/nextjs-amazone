@@ -1,7 +1,7 @@
-import CredentialsProvider from 'next-auth/providers/credentials';
-import NextAuth from 'next-auth';
-import User from '../../../models/User';
 import bcryptjs from 'bcryptjs';
+import NextAuth from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
+import User from '../../../models/User';
 import db from '../../../utils/db';
 
 export default NextAuth({
@@ -17,8 +17,8 @@ export default NextAuth({
     async session({ session, token }) {
       if (token?._id) session.user._id = token._id;
       if (token?.isAdmin) session.user.isAdmin = token.isAdmin;
-      return session
-    }
+      return session;
+    },
   },
   providers: [
     CredentialsProvider({
@@ -34,11 +34,11 @@ export default NextAuth({
             name: user.name,
             email: user.email,
             image: 'f',
-            isAdmin: user.isAdmin
-          }
+            isAdmin: user.isAdmin,
+          };
         }
         throw new Error('Invalid email or password');
-      }
-    })
-  ]
-})
+      },
+    }),
+  ],
+});
