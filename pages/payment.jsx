@@ -1,43 +1,15 @@
 import CheckoutWizard from '../components/CheckoutWizard';
-import Cookies from 'js-cookie';
 import Layout from '../components/Layout';
-import React, { useContext, useEffect, useState } from 'react';
-import { Store } from '../utils/Store';
-import { toast } from 'react-toastify';
-import { useRouter } from 'next/router';
+import React from 'react';
+import usePaymentPage from '../hooks/usePaymentPage';
 
 const PaymentScreen = () => {
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
-  const router = useRouter();
-
-  const { state, dispatch } = useContext(Store);
-  const { cart } = state;
-  const { shippingAddress, paymentMethod } = cart;
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-
-    if (!selectedPaymentMethod) {
-      return toast.error('Payment method is required');
-    }
-    dispatch({ type: 'SAVE_PAYMENT_METHOD', payload: selectedPaymentMethod });
-    Cookies.set(
-      'cart',
-      JSON.stringify({
-        ...cart,
-        paymentMethod: selectedPaymentMethod
-      })
-    );
-
-    router.push('/placeorder');
-  };
-
-  useEffect(() => {
-    if (!shippingAddress.address) {
-      return router.push('/shipping');
-    }
-    setSelectedPaymentMethod(paymentMethod || '');
-  }, [paymentMethod, router, shippingAddress.address]);
+const {
+  submitHandler,
+  selectedPaymentMethod,
+  setSelectedPaymentMethod,
+  router
+} = usePaymentPage();
 
   return (
     <Layout title="Payment Method">
