@@ -1,0 +1,7 @@
+.textRight {
+  @apply p-5 text-right
+}
+
+.jb {
+  @apply mb-2 flex justify-between
+}
