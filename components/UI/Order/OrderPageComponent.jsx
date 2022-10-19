@@ -1,23 +1,20 @@
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import useOrderPage from './useOrderPage';
-import OrderSummary from './OrderSummary';
-import OrderShippingAddress from './OrderShippingAddress';
-import OrderPaymentMethod from './OrderPaymentMethod';
 import OrderItemsComponent from './OrderItemsComponent';
+import OrderPaymentMethod from './OrderPaymentMethod';
+import OrderShippingAddress from './OrderShippingAddress';
+import OrderSummary from './OrderSummary';
+import React from 'react';
+import useOrderPage from './useOrderPage';
 
 const OrderPageComponent = () => {
   const { orderId, order, loading, error } = useOrderPage();
 
   const {
-    shippingAddress,
-    paymentMethod,
-    orderItems,
+    deliveredAt,
+    isDelivered,
     isPaid,
     paidAt,
-    isDelivered,
-    deliveredAt
+    paymentMethod,
+    shippingAddress,
   } = order;
 
   return (
@@ -44,7 +41,7 @@ const OrderPageComponent = () => {
 
             <OrderItemsComponent />
           </div>
-              <OrderSummary  />
+          <OrderSummary />
         </div>
       )}
     </>

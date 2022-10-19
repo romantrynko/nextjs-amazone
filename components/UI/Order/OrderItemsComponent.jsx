@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import useOrderPage from './useOrderPage';
+
 import styles from './styles.module.css';
 
 const tableHeadItems = ['Quantity', 'Price', 'Subtotal'];
