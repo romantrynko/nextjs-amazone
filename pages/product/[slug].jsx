@@ -14,7 +14,7 @@ export default function ProductScreen(props) {
 
   return (
     <Layout title={product.name}>
-      <ProductPageComponent props={props} />
+      <ProductPageComponent {...props} />
     </Layout>
   );
 }

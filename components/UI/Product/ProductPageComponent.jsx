@@ -4,12 +4,8 @@ import React from 'react';
 import useProductPage from './useProductPage';
 import Button from '../Button';
 
-const ProductPageComponent = ({ props }) => {
+const ProductPageComponent = (props) => {
   const { product, addToCartHandler } = useProductPage(props);
-  const btnProps = {
-    onClick: addToCartHandler,
-    name: "Add to Cart"
-  };
 
   return (
     <>
@@ -49,7 +45,7 @@ const ProductPageComponent = ({ props }) => {
               <div>Status</div>
               <div>{product.countInStock > 0 ? 'In stock' : 'Unavailable'}</div>
             </div>
-            <Button {...btnProps}/>
+            <Button onClick={addToCartHandler}>Add to Cart</Button>
           </div>
         </div>
       </div>

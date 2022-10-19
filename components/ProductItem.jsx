@@ -29,7 +29,7 @@ const ProductItem = ({ product, addToCartHandler }) => {
         </Link>
         <p className="mb-2">{product.brand}</p>
         <p>${product.price}</p>
-        <Button {...btnProps}/>
+        <Button onClick={() => addToCartHandler(product)}>Add to Cart</Button>
       </div>
     </div>
   );

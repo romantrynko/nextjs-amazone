@@ -4,9 +4,8 @@ const Button = (btnProps) => {
   return (
     <button
       className="primary-button"
-      type="button"
       {...btnProps}>
-      {btnProps.name}
+      {btnProps.children}
     </button>
   );
 };

@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import usePlaceOrderPage from './usePlaceOrderPage';
+import Button from '../Button';
 
 const PlaceOrderPageComponent = () => {
   const {
@@ -117,12 +118,12 @@ const PlaceOrderPageComponent = () => {
                   </div>
                 </li>
                 <li>
-                  <button
+                  <Button
                     disabled={loading}
                     onClick={placeOrderHandler}
                     className="primary-button w-full">
                     {loading ? 'Loading...' : 'Place Order'}
-                  </button>
+                  </Button>
                 </li>
               </ul>
             </div>

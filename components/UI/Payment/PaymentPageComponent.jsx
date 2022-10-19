@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from '../Button';
 import usePaymentPage from './usePaymentPage';
 
 const PaymentPageComponent = () => {
@@ -34,13 +35,13 @@ const PaymentPageComponent = () => {
         </div>
       ))}
       <div className="mb-4 flex justify-between">
-        <button
+        <Button
           onClick={() => router.push('/shipping')}
           type="button"
           className="default-button">
           Back
-        </button>
-        <button className="primary-button">Next</button>
+        </Button>
+        <Button type="submit">Next</Button>
       </div>
     </form>
   );

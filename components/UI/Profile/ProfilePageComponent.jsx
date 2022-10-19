@@ -1,5 +1,6 @@
 import React from 'react'
 import useProfilePage from './useProfilePage';
+import Button from '../Button';
 
 const ProfilePageComponent = () => {
 const { handleSubmit, submitHandler, register, errors, getValues } =
@@ -84,7 +85,7 @@ const { handleSubmit, submitHandler, register, errors, getValues } =
           )}
       </div>
       <div className="mb-4">
-        <button className="primary-button">Update Profile</button>
+        <Button className="primary-button">Update Profile</Button>
       </div>
     </form>
   );

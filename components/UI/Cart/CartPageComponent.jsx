@@ -2,6 +2,7 @@ import { XCircleIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
+import Button from '../Button';
 import useCartPage from './useCartPage';
 
 const CartPageComponent = () => {
@@ -59,9 +60,9 @@ const CartPageComponent = () => {
                 </td>
                 <td className="p-5 text-right">${item.price}</td>
                 <td className="p-5 text-center">
-                  <button onClick={() => removeItemHandler(item)}>
+                  <Button className='bg-white' onClick={() => removeItemHandler(item)}>
                     <XCircleIcon className="h-5 w-5"></XCircleIcon>
-                  </button>
+                  </Button>
                 </td>
               </tr>
             ))}
@@ -76,11 +77,11 @@ const CartPageComponent = () => {
             </div>
           </li>
           <li>
-            <button
+            <Button
               onClick={() => router.push('login?redirect=/shipping')}
               className="primary-button w-full">
               Check Out
-            </button>
+            </Button>
           </li>
         </ul>
       </div>

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React from 'react'
 import useLoginPage from './useLoginPage';
+import Button from '../Button';
 
 const regEx = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/i
 
@@ -50,7 +51,7 @@ const LoginPageComponent = () => {
         )}
       </div>
       <div className="mb-4">
-        <button className="primary-button">Login</button>
+        <Button className="primary-button">Login</Button>
       </div>
       <div className="mb-4">
         Don&apos;t have an account? &nbsp;

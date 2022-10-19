@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import useRegisterPage from './useRegisterPage';
+import Button from '../Button';
 
 const RegisterPageComponent = () => {
   const { handleSubmit, submitHandler, register, errors, getValues, redirect } =
@@ -90,7 +91,7 @@ const RegisterPageComponent = () => {
       </div>
 
       <div className="mb-4">
-        <button className="primary-button">Register</button>
+        <Button className="primary-button">Register</Button>
       </div>
 
       <div className="mb-4">
