@@ -10,7 +10,7 @@ const ProductPageComponent = (props) => {
   return (
     <>
       <div className="py-2">
-        <Link href="/">back to products</Link>
+        <Link href="/">Back to products</Link>
       </div>
 
       <div className="grid md:grid-cols-4 md:gap-3">
@@ -20,12 +20,12 @@ const ProductPageComponent = (props) => {
             alt={product.name}
             width={640}
             height={640}
-            layout="responsive"></Image>
+            layout='responsive'></Image>
         </div>
-        <div>
+        <div className='sf'>
           <ul>
             <li>
-              <h1 className="text-lg">{product.name}</h1>
+              <h1 className="text-lg mf">{product.name}</h1>
             </li>
             <li>Category: {product.category}</li>
             <li>Brand: {product.brand}</li>
@@ -37,11 +37,11 @@ const ProductPageComponent = (props) => {
         </div>
         <div>
           <div className="card p-5">
-            <div className="mb-2 flex justify-between">
+            <div className="mb-2 flex justify-between sf">
               <div>Price</div>
               <div>${product.price}</div>
             </div>
-            <div className="mb-2 flex justify-between">
+            <div className="mb-2 flex justify-between sf">
               <div>Status</div>
               <div>{product.countInStock > 0 ? 'In stock' : 'Unavailable'}</div>
             </div>

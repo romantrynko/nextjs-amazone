@@ -13,7 +13,7 @@ const OrderItemsComponent = () => {
   } = useOrderPage();
 
   return (
-    <div className="card overflow-x-auto p-5">
+    <div className="card overflow-x-auto p-5 sf">
       <h2 className="mb-2 text-lg">Order Items</h2>
       <table className="min-w-full">
         <thead className="border-b">
@@ -36,7 +36,7 @@ const OrderItemsComponent = () => {
               className="border-b">
               <td>
                 <Link href={`/product/${item.slug}`}>
-                  <a className="flex items-center">
+                  <a className="flex items-center mf">
                     <Image
                       src={item.image}
                       alt={item.name}

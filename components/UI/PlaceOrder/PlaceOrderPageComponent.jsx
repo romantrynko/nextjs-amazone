@@ -19,7 +19,7 @@ const PlaceOrderPageComponent = () => {
 
   return (
     <>
-      <h1 className="mb-4 text-xl">Place Order</h1>
+      <h1 className="mb-4 text-xl mf">Place Order</h1>
       {cartItems.length === 0 ? (
         <div>
           Cart is empty. <Link href="/">Go shopping</Link>
@@ -28,8 +28,8 @@ const PlaceOrderPageComponent = () => {
         <div className="grid md:grid-cols-4 md:gap-5">
           <div className="overflow-x-auto md:col-span-3">
             <div className="card p-5">
-              <h2 className="mb-2 text-lg">Shipping Address</h2>
-              <div className="mb-2">
+              <h2 className="mb-2 text-lg mf">Shipping Address</h2>
+              <div className="mb-2 sf">
                 {shippingAddress.fullName}, {shippingAddress.address},{' '}
                 {shippingAddress.city}, {shippingAddress.postalCode},{' '}
                 {shippingAddress.country}
@@ -39,16 +39,16 @@ const PlaceOrderPageComponent = () => {
               </div>
             </div>
             <div className="card p-5">
-              <h2 className="mb-2 text-lg">Payment Method</h2>
-              <div className="mb-2">{paymentMethod}</div>
+              <h2 className="mb-2 text-lg mf">Payment Method</h2>
+              <div className="mb-2 sf">{paymentMethod}</div>
               <div>
                 <Link href="/payment">Edit</Link>
               </div>
             </div>
             <div className="card overflow-x-auto p-5">
-              <h2 className="mb-2 text-lg">Order Items</h2>
+              <h2 className="mb-2 text-lg mf">Order Items</h2>
               <table className="min-w-full mb-2">
-                <thead className="border-b">
+                <thead className="border-b mf">
                   <tr>
                     <th className="px-5 text-left">Item</th>
                     <th className="p-5 text-right">Quantity</th>
@@ -61,7 +61,7 @@ const PlaceOrderPageComponent = () => {
                   {cartItems.map((item) => (
                     <tr
                       key={item._id}
-                      className="border-b">
+                      className="border-b sf">
                       <td>
                         <Link href={`/product/${item.slug}`}>
                           <a className="flex items-center">
@@ -91,28 +91,28 @@ const PlaceOrderPageComponent = () => {
           </div>
           <div className="">
             <div className="card p-5">
-              <h2 className="mb-2 text-lg">Order Summary</h2>
+              <h2 className="mb-2 text-lg mf">Order Summary</h2>
               <ul>
                 <li>
-                  <div className="mb-2 flex justify-between">
+                  <div className="mb-2 flex justify-between sf">
                     <div>Items</div>
                     <div>${itemsPrice}</div>
                   </div>
                 </li>
                 <li>
-                  <div className="mb-2 flex justify-between">
+                  <div className="mb-2 flex justify-between sf">
                     <div>Tax</div>
                     <div>${taxPrice}</div>
                   </div>
                 </li>
                 <li>
-                  <div className="mb-2 flex justify-between">
+                  <div className="mb-2 flex justify-between sf">
                     <div>Shipping</div>
                     <div>${shippingPrice}</div>
                   </div>
                 </li>
                 <li>
-                  <div className="mb-2 flex justify-between">
+                  <div className="mb-2 flex justify-between sf">
                     <div>Total</div>
                     <div>${totalPrice}</div>
                   </div>

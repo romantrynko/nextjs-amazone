@@ -1,16 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
 import React from 'react';
-import Button from './UI/Button';
+import Button from '../UI/Button';
+import styles from './styles.module.css';
 
 const ProductItem = ({ product, addToCartHandler }) => {
-  const btnProps = {
-    onClick: () => addToCartHandler(product),
-    name: 'Add to Cart'
-  };
-
   return (
-    <div className="card">
+    <div className="card border-none">
       <Link href={`/product/${product.slug}`}>
         <a>
           <img
@@ -21,14 +17,14 @@ const ProductItem = ({ product, addToCartHandler }) => {
         </a>
       </Link>
 
-      <div className="flex flex-col items-center justify-center p-5">
+      <div className={styles.wrapper}>
         <Link href={`/product/${product.slug}`}>
           <a>
-            <h2 className="text-lg">{product.name}</h2>
+            <h2 className="text-lg mf">{product.name}</h2>
           </a>
         </Link>
-        <p className="mb-2">{product.brand}</p>
-        <p>${product.price}</p>
+        <p className="mb-2 sf">{product.brand}</p>
+        <p className="sf">${product.price}</p>
         <Button onClick={() => addToCartHandler(product)}>Add to Cart</Button>
       </div>
     </div>

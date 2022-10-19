@@ -3,7 +3,7 @@ import React from 'react'
 
 const CartEmpty = () => {
   return (
-    <div>
+    <div className='sf'>
       Cart is empty. <Link href="/">Go shopping</Link>
     </div>
   );

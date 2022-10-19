@@ -13,7 +13,7 @@ const LoginPageComponent = () => {
     <form
       className="mx-auto max-w-screen-md"
       onSubmit={handleSubmit(submitHandler)}>
-      <h1 className="mb-4 text-xl">Login</h1>
+      <h1 className="mb-4 text-xl mf">Login</h1>
       <div className="mb-4">
         <label htmlFor="email">Email</label>
         <input
@@ -53,7 +53,7 @@ const LoginPageComponent = () => {
       <div className="mb-4">
         <Button className="primary-button">Login</Button>
       </div>
-      <div className="mb-4">
+      <div className="mb-4 sf">
         Don&apos;t have an account? &nbsp;
         <Link href={`/register?redirect=${redirect || '/'}`}>Register</Link>
       </div>

@@ -1,3 +1,3 @@
 .footer {
-  @apply flex h-10 justify-center items-center shadow-inner
+  @apply flex h-10 justify-center items-center shadow-inner bg-gray-600 text-gray-300
 }

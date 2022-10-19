@@ -14,7 +14,7 @@ const PaymentPageComponent = () => {
     <form
       className="mx-auto"
       onSubmit={submitHandler}>
-      <h1 className="mb-4 text-xl">Payment Method</h1>
+      <h1 className="mb-4 text-xl mf">Payment Method</h1>
       {['PayPal', 'Stripe', 'CashOnDelivery'].map((payment) => (
         <div
           key={payment}

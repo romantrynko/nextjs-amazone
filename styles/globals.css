@@ -14,8 +14,24 @@ a {
   @apply text-blue-600 hover:text-blue-800
 }
 
+label {
+  @apply text-gray-300
+}
+
+input {
+  @apply bg-gray-400 border-none
+}
+
 * {
   box-sizing: border-box;
+}
+
+.mf {
+  @apply text-slate-300
+}
+
+.sf {
+  @apply text-slate-400
 }
 
 .card {
@@ -23,7 +39,7 @@ a {
 }
 
 .primary-button {
-  @apply rounded bg-amber-300 py-2 px-4 mt-3 shadow outline-none hover:bg-amber-400 active:bg-amber-500
+  @apply rounded bg-blue-300 py-2 px-4 mt-3 shadow outline-none hover:bg-blue-400 active:bg-blue-500
 }
 
 .default-button {

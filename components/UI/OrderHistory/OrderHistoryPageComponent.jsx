@@ -9,7 +9,7 @@ const OrderHistoryPageComponent = () => {
 
   return (
     <>
-      <h1 className="text-xl">Order History</h1>
+      <h1 className="text-xl mf">Order History</h1>
       {loading ? (
         <div>Loading...</div>
       ) : error ? (
@@ -17,7 +17,7 @@ const OrderHistoryPageComponent = () => {
       ) : (
         <div className="overflow-x-auto">
           <table className="min-w-full">
-            <thead className="border-b">
+            <thead className="border-b mf">
               <tr>
                 <th className="px-5 text-left">ID</th>
                 {tableHeadItems.map((item, index) => (
@@ -34,7 +34,7 @@ const OrderHistoryPageComponent = () => {
               {orders.map((order) => (
                 <tr
                   key={order._id}
-                  className="border-b">
+                  className="border-b sf">
                   <td className="p-5">{order._id.substring(20, 24)}</td>
                   <td className="p-5">${order.totalPrice}</td>
                   <td className="p-5">{order.createdAt.substring(0, 10)}</td>
@@ -48,11 +48,11 @@ const OrderHistoryPageComponent = () => {
                       ? `${order.deliveredAt.substring(0, 10)}`
                       : 'not delivered'}
                   </td>
-                  <td className="p-5">
+                  <td className="p-5 ">
                     <Link
                       href={`/order/${order._id}`}
                       passHref>
-                      <a>Details</a>
+                      <a className="mf">Details</a>
                     </Link>
                   </td>
                 </tr>

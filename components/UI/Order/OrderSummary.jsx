@@ -17,7 +17,7 @@ const OrderSummary = () => {
   
   return (
     <div>
-      <div className="card p-5 min-w-min">
+      <div className="card p-5 min-w-min sf">
         <h2 className="mb-2 text-lg">Order Summary</h2>
         <ul>
           {shippingDetails.map((item, index) => (

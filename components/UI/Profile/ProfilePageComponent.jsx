@@ -1,6 +1,7 @@
 import React from 'react'
 import useProfilePage from './useProfilePage';
 import Button from '../Button';
+import styles from './styles.module.css'
 
 const ProfilePageComponent = () => {
 const { handleSubmit, submitHandler, register, errors, getValues } =
@@ -10,7 +11,7 @@ const { handleSubmit, submitHandler, register, errors, getValues } =
     <form
       className="mx-auto max-w-screen-md"
       onSubmit={handleSubmit(submitHandler)}>
-      <h1 className="mb-4 text-xl">Update Profile</h1>
+      <h1 className="mb-4 text-xl mf">Update Profile</h1>
 
       <div className="mb-4">
         <label htmlFor="name">Name</label>

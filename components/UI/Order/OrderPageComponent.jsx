@@ -19,7 +19,7 @@ const OrderPageComponent = () => {
 
   return (
     <>
-      <h1 className="mb-4 text-xl">{`Order #${orderId}`}</h1>
+      <h1 className="mb-4 text-xl mf">{`Order #${orderId}`}</h1>
       {loading ? (
         <div>Loading...</div>
       ) : error ? (

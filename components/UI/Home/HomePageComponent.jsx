@@ -1,7 +1,7 @@
 import React from 'react';
-import ProductItem from '../../ProductItem';
 import styles from './styles.module.css';
 import useHomePage from './useHomePage';
+import ProductItem from '../../ProductItem/ProductItem';
 
 const HomePageComponent = ({ products }) => {
   const { addToCartHandler } = useHomePage();
