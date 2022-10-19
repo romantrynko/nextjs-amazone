@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useReducer } from 'react';
-import { getError } from '../utils/error';
+import { getError } from '../../../utils/error';
 
 const useOrderHistoryPage = () => {
   function reducer(state, action) {

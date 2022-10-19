@@ -2,7 +2,7 @@ import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { Store } from '../utils/Store';
+import { Store } from '../../../utils/Store';
 
 const usePaymentPage = () => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');

@@ -1,8 +1,8 @@
-import { toast } from 'react-toastify';
 import axios from 'axios';
-import { useRouter } from 'next/router';
+import { Store } from '../../../utils/Store';
+import { toast } from 'react-toastify';
 import { useContext } from 'react';
-import { Store } from '../utils/Store';
+import { useRouter } from 'next/router';
 
 const useProductPage = (props) => {
   const { product } = props;

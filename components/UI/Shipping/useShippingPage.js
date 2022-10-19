@@ -2,7 +2,7 @@ import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 import { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Store } from '../utils/Store';
+import { Store } from '../../../utils/Store';
 
 const useShippingPage = () => {
   const {

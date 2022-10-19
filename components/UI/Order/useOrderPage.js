@@ -1,8 +1,8 @@
 import { usePayPalScriptReducer } from '@paypal/react-paypal-js';
 import { useRouter } from 'next/router';
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import { toast } from 'react-toastify';
-import { getError } from '../utils/error';
+import { getError } from '../../../utils/error';
 import axios from 'axios';
 
 const useOrderPage = () => {
@@ -74,6 +74,43 @@ const useOrderPage = () => {
   function onError(err) {
     toast.error(getError(err));
   }
+
+  useEffect(() => {
+    const fetchOrder = async () => {
+      try {
+        dispatch({ type: 'FETCH_REQUEST' });
+        const { data } = await axios.get(`/api/orders/${orderId}`);
+        dispatch({ type: 'FETCH_SUCCESS', payload: data });
+      } catch (err) {
+        dispatch({ type: 'FETCH_FAIL', payload: getError(err) });
+      }
+    };
+
+    if (!order._id || successPay || (order._id && order._id !== orderId)) {
+      fetchOrder();
+      if (successPay) {
+        dispatch({ type: 'PAY_RESET' });
+      }
+    } else {
+      const loadPayPalScript = async () => {
+        const { data: clientId } = await axios.get('/api/keys/paypal');
+
+        paypalDispatch({
+          type: 'resetOptions',
+          value: {
+            'client-id': clientId,
+            currency: 'USD'
+          }
+        });
+
+        paypalDispatch({
+          type: 'setLoadingStatus',
+          value: 'pending'
+        });
+      };
+      loadPayPalScript();
+    }
+  }, [dispatch, order, orderId, paypalDispatch, successPay]);
 
   return {
     dispatch,

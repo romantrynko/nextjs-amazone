@@ -2,19 +2,12 @@ import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
 import { toast } from 'react-toastify';
-import { getError } from '../utils/error';
+import { getError } from '../../../utils/error';
 
-const useRegisterPage = () => {
-  const {
-    handleSubmit,
-    register,
-    getValues,
-    formState: { errors }
-  } = useForm();
-
+const useLoginPage = () => {
   const { data: session } = useSession();
+
   const router = useRouter();
   const { redirect } = router.query;
 
@@ -24,16 +17,16 @@ const useRegisterPage = () => {
     }
   }, [redirect, router, session]);
 
-  const submitHandler = async ({ name, email, password }) => {
-    try {
-      await axios.post('/api/auth/signup', {
-        name,
-        email,
-        password
-      });
+  const {
+    handleSubmit,
+    register,
+    formState: { errors }
+  } = useForm();
 
+  const submitHandler = async ({ email, password }) => {
+    try {
       const result = await signIn('credentials', {
-        redirect: 'false',
+        redirect: false,
         email,
         password
       });
@@ -41,11 +34,17 @@ const useRegisterPage = () => {
         toast.error(result.error);
       }
     } catch (err) {
-      toast.error(getError.error);
+      toast.error(getError(err));
     }
   };
 
-  return { handleSubmit, submitHandler, register, errors, getValues, redirect }
+  return {
+    handleSubmit,
+    register,
+    submitHandler,
+    errors,
+    redirect
+  }
 }
 
-export default useRegisterPage
+export default useLoginPage

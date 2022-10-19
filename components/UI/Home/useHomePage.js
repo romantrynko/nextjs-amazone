@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { toast } from 'react-toastify';
-import { Store } from '../utils/Store';
+import { Store } from '../../../utils/Store';
 import axios from 'axios';
 
 const useHomePage = () => {

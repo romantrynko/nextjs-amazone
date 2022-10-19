@@ -3,7 +3,7 @@ import { signIn, useSession } from 'next-auth/react';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { getError } from '../utils/error';
+import { getError } from '../../../utils/error';
 const useProfilePage = () => {
   const { data: session } = useSession();
 

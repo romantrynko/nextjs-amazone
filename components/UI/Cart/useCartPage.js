@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useContext } from 'react';
 import { toast } from 'react-toastify';
-import { Store } from '../utils/Store';
+import { Store } from '../../../utils/Store';
 
 const useCartPage = () => {
   const { state, dispatch } = useContext(Store);

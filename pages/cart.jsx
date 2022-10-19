@@ -3,7 +3,7 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 import CartPageComponent from '../components/UI/Cart/CartPageComponent';
 import CartEmpty from '../components/UI/Cart/CartEmpty';
-import useCartPage from '../hooks/useCartPage';
+import useCartPage from '../components/UI/Cart/useCartPage';
 
 const CartScreen = () => {
   const { cartItems } = useCartPage();

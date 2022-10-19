@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react'
-import useLoginPage from '../../../hooks/useLoginPage';
+import useLoginPage from './useLoginPage';
 
 const regEx = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/i
 

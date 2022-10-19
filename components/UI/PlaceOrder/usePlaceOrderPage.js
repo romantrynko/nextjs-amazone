@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
-import { Store } from '../utils/Store';
-import usePrice from '../utils/usePrice';
+import { Store } from '../../../utils/Store';
+import usePrice from '../../../utils/usePrice';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
-import { getError } from '../utils/error';
+import { getError } from '../../../utils/error';
 
 const usePlaceOrderPage = () => {
   const { state, dispatch } = useContext(Store);
