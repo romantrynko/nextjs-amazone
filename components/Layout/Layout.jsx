@@ -36,7 +36,7 @@ function Layout({ title, children }) {
 
         <main className={styles.main}>{children}</main>
 
-        <FooterComponent/>
+        <FooterComponent />
       </div>
     </>
   );

@@ -19,7 +19,7 @@ label {
 }
 
 input {
-  @apply bg-gray-400 border-none
+  @apply bg-gray-400 border-none my-1
 }
 
 * {

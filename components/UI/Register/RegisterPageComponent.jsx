@@ -11,7 +11,7 @@ const RegisterPageComponent = () => {
     <form
       className="mx-auto max-w-screen-md"
       onSubmit={handleSubmit(submitHandler)}>
-      <h1 className="mb-4 text-xl">Create Account</h1>
+      <h1 className="mb-4 text-xl mf">Create Account</h1>
 
       <div className="mb-4">
         <label htmlFor="email">Name</label>
@@ -24,7 +24,7 @@ const RegisterPageComponent = () => {
           className="w-full"
           autoFocus></input>
         {errors.name && (
-          <div className="text-red-500">{errors.name.message}</div>
+          <div className="text-red-600">{errors.name.message}</div>
         )}
       </div>
 
@@ -42,7 +42,7 @@ const RegisterPageComponent = () => {
           id="email"
           className="w-full"></input>
         {errors.email && (
-          <div className="text-red-500">{errors.email.message}</div>
+          <div className="text-red-600">{errors.email.message}</div>
         )}
       </div>
 
@@ -60,7 +60,7 @@ const RegisterPageComponent = () => {
           id="password"
           className="w-full"></input>
         {errors.password && (
-          <div className="text-red-500">{errors.password.message}</div>
+          <div className="text-red-600">{errors.password.message}</div>
         )}
       </div>
 
@@ -81,12 +81,12 @@ const RegisterPageComponent = () => {
         />
 
         {errors.confirmPassword && (
-          <div className="text-red-500">{errors.confirmPassword.message}</div>
+          <div className="text-red-600">{errors.confirmPassword.message}</div>
         )}
 
         {errors.confirmPassword &&
           errors.confirmPassword.type === 'validate' && (
-            <div className="text-red-500">Password does not match!</div>
+            <div className="text-red-600">Password does not match!</div>
           )}
       </div>
 
@@ -94,7 +94,7 @@ const RegisterPageComponent = () => {
         <Button className="primary-button">Register</Button>
       </div>
 
-      <div className="mb-4">
+      <div className="mb-4 mf">
         Don&apos;t have an account? &nbsp;
         <Link href={`/register?redirect=${redirect || '/'}`}>Register</Link>
       </div>

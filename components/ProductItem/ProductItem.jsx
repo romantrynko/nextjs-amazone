@@ -12,7 +12,7 @@ const ProductItem = ({ product, addToCartHandler }) => {
           <img
             src={product.image}
             alt={product.name}
-            className="rounded shadow"
+            className="rounded-lg"
           />
         </a>
       </Link>
@@ -23,7 +23,7 @@ const ProductItem = ({ product, addToCartHandler }) => {
             <h2 className="text-lg mf">{product.name}</h2>
           </a>
         </Link>
-        <p className="mb-2 sf">{product.brand}</p>
+        <p className="mb-2 text-2xl sf">{product.brand}</p>
         <p className="sf">${product.price}</p>
         <Button onClick={() => addToCartHandler(product)}>Add to Cart</Button>
       </div>
