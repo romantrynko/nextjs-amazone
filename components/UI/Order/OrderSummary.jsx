@@ -14,6 +14,7 @@ const OrderSummary = () => {
     { value: shippingPrice, name: 'Shipping' },
     { value: totalPrice, name: 'Total' }
   ];
+  
   return (
     <div>
       <div className="card p-5 min-w-min">

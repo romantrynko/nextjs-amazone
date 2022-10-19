@@ -1,4 +1,4 @@
-import Layout from '../components/Layout';
+import Layout from '../components/Layout/Layout';
 import React from 'react';
 import LoginPageComponent from '../components/UI/Login/LoginPageComponent';
 

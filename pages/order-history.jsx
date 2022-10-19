@@ -1,4 +1,4 @@
-import Layout from '../components/Layout';
+import Layout from '../components/Layout/Layout';
 import OrderHistoryPageComponent from '../components/UI/OrderHistory/OrderHistoryPageComponent';
 import React from 'react';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import CheckoutWizard from '../components/CheckoutWizard';
-import Layout from '../components/Layout';
+import Layout from '../components/Layout/Layout';
 import PlaceOrderPageComponent from '../components/UI/PlaceOrder/PlaceOrderPageComponent';
 
 const PlaceOrderScreen = () => {

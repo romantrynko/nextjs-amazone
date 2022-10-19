@@ -1,5 +1,5 @@
 import CheckoutWizard from '../components/CheckoutWizard';
-import Layout from '../components/Layout';
+import Layout from '../components/Layout/Layout';
 import React from 'react';
 import ShippingPageComponent from '../components/UI/Shipping/ShippingPageComponent';
 

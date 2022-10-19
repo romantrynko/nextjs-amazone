@@ -2,9 +2,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import useProductPage from './useProductPage';
+import Button from '../Button';
 
-const ProductPageComponent = ({props}) => {
+const ProductPageComponent = ({ props }) => {
   const { product, addToCartHandler } = useProductPage(props);
+  const btnProps = {
+    onClick: addToCartHandler,
+    name: "Add to Cart"
+  };
+
   return (
     <>
       <div className="py-2">
@@ -43,11 +49,7 @@ const ProductPageComponent = ({props}) => {
               <div>Status</div>
               <div>{product.countInStock > 0 ? 'In stock' : 'Unavailable'}</div>
             </div>
-            <button
-              className="primary-button w-full"
-              onClick={addToCartHandler}>
-              Add to cart
-            </button>
+            <Button {...btnProps}/>
           </div>
         </div>
       </div>

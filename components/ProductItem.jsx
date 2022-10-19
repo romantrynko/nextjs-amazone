@@ -1,8 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
 import React from 'react';
+import Button from './UI/Button';
 
 const ProductItem = ({ product, addToCartHandler }) => {
+  const btnProps = {
+    onClick: () => addToCartHandler(product),
+    name: 'Add to Cart'
+  };
+
   return (
     <div className="card">
       <Link href={`/product/${product.slug}`}>
@@ -23,12 +29,7 @@ const ProductItem = ({ product, addToCartHandler }) => {
         </Link>
         <p className="mb-2">{product.brand}</p>
         <p>${product.price}</p>
-        <button
-          className="primary-button"
-          type="button"
-          onClick={() => addToCartHandler(product)}>
-          Add to Cart
-        </button>
+        <Button {...btnProps}/>
       </div>
     </div>
   );

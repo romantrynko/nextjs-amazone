@@ -1,5 +1,5 @@
 import CheckoutWizard from '../components/CheckoutWizard';
-import Layout from '../components/Layout';
+import Layout from '../components/Layout/Layout';
 import PaymentPageComponent from '../components/UI/Payment/PaymentPageComponent';
 import React from 'react';
 

@@ -1,4 +1,4 @@
-import Layout from '../components/Layout';
+import Layout from '../components/Layout/Layout';
 import ProfilePageComponent from '../components/UI/Profile/ProfilePageComponent';
 import React from 'react';
 

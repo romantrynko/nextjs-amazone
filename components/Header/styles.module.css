@@ -1,0 +1,19 @@
+.headerNav {
+  @apply flex h-12 items-center px-4 justify-between shadow-md w-full
+}
+
+.headerTitle {
+  @apply text-lg font-bold
+}
+
+.headerCartLabel {
+  @apply ml-1 rounded-full bg-red-600 text-xs px-2 py-1 font-bold text-white
+}
+
+.headerMenu {
+  @apply absolute right-0 w-56 origin-top-right bg-white shadow-lg
+}
+
+.container {
+  @apply fixed bg-white w-screen flex justify-between
+}
